@@ -33,9 +33,11 @@
                     </div>
                     <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                         <div class="flex shrink-0 items-center">
-                            <img class="h-8 w-auto"
-                                src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
-                                alt="Your Company">
+                            <NuxtLink to="/">
+                                <img class="h-8 w-auto"
+                                    src="assets\images\main_logo.90defeb.gif"
+                                    alt="Your Company">
+                            </NuxtLink>
                         </div>
                         <div class="hidden sm:ml-6 sm:block">
                             <div class="flex space-x-4">

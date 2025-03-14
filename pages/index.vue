@@ -13,7 +13,9 @@
             </thead>
             <tbody>
                 <tr v-for="post in data" v-bind:key="post.id">
-                    <td>{{ post.properties.fac_nam }}</td>
+                    <td>
+                        <NuxtLink :to="'/example/' + post.id">{{ post.properties.fac_nam }}</NuxtLink>
+                    </td>
                     <td>{{ post.properties.fac_tel }}</td>
                     <td>{{ post.properties.cat_nam }}</td>
                     <td>{{ post.properties.fac_o_add }}</td>
@@ -29,6 +31,4 @@ const { data, pending, error } = useFetch('http://localhost:3001/features');
 </script>
 
 
-<style scoped>
-
-</style>
+<style scoped></style>

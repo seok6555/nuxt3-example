@@ -1,75 +1,18 @@
-# Nuxt Minimal Starter
+# nuxt3-example
+* **개발 인원**: 1명
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+* **개발 환경**: Visual Studio Code, Vue.js, Nuxt.js v3, node v20.18.3, nvm v1.2.2, json-server v1.0.0-beta.3, tailwind, vue-tsc
 
-## Setup
+* **개발 기간**: 2025.03 ~ 2025.03 (약 1개월)
 
-Make sure to install dependencies:
+* **지원 플랫폼**: PC
 
-```bash
-# npm
-npm install
+* **프로젝트 개요**: EK그룹 인턴십 과제로 진행한 프로젝트. <br>Nuxt3를 이용하여 노인복지시설 공공데이터를 활용한 리스트 조회, 수정 등을 할 수 있는 웹페이지 구현.
 
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+* **핵심 기능**
+   - **핵심 기능 1 구현**
+   <br>핵심 기능을 구현함.
+   - **핵심 기능 2 구현**
+   <br>핵심 기능을 구현함.
+   - **핵심 기능 3 구현**
+   <br>핵심 기능을 구현함.

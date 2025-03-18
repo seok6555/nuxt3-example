@@ -16,34 +16,28 @@
 
 <script setup>
 const route = useRoute();
-const { data, pending, error } = useFetch('http://localhost:3001/features/' + route.params.id);
+const { data, pending, error } = await useFetch('http://localhost:3001/features/' + route.params.id);
 
-const featuresData = ref({
-  type: '',
-  geometry: {
-    type: '',
-    coordinates: ['', '']
-  },
-  properties: {
-    fac_nam: '',
-    fac_tel: '',
-    cat_nam: '',
-    fac_o_add: '',
-    fac_n_add: ''
-  },
-});
+const featuresData = useState('featuresData');
+// const featuresData = ref({
+//   type: '',
+//   geometry: {
+//     type: '',
+//     coordinates: ['', '']
+//   },
+//   properties: {
+//     fac_nam: '',
+//     fac_tel: '',
+//     cat_nam: '',
+//     fac_o_add: '',
+//     fac_n_add: ''
+//   },
+// });
 
 // 데이터를 가져오면 featuresData에 설정
 watchEffect(() => {
   if (data.value) {
-    featuresData.value.type = data.value.type // API 데이터의 `type` 속성
-    featuresData.value.geometry.type = data.value.geometry.type // API 데이터의 `geometry.type` 속성
-    featuresData.value.geometry.coordinates = data.value.geometry.coordinates // API 데이터의 `geometry.coordinates` 속성
-    featuresData.value.properties.fac_nam = data.value.properties.fac_nam
-    featuresData.value.properties.fac_tel = data.value.properties.fac_tel
-    featuresData.value.properties.cat_nam = data.value.properties.cat_nam
-    featuresData.value.properties.fac_o_add = data.value.properties.fac_o_add
-    featuresData.value.properties.fac_n_add = data.value.properties.fac_n_add
+    featuresData.value = data.value;
   }
 })
 

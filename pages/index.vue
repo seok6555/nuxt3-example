@@ -1,4 +1,34 @@
 <template>
+  <div>
+    <h1>노인복지시설 목록</h1>
+    <div v-if="pending">Loading...</div>
+    <div v-else-if="error">Error: {{ error.message }}</div>
+    <div v-else>
+      <table class="w-full border-collapse border border-gray-300">
+        <thead>
+          <tr class="bg-gray-200">
+            <td>시설 명</td>
+            <td>전화번호</td>
+            <td>분류 명</td>
+            <td>주소</td>
+            <td>도로명주소</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="featuresData in data" v-bind:key="featuresData.id">
+            <NuxtLink :to="'/example/' + featuresData.id">
+              <td>{{ featuresData.fac_nam }}</td>
+              <td>{{ featuresData.fac_tel }}</td>
+              <td>{{ featuresData.cat_nam }}</td>
+              <td>{{ featuresData.fac_o_add }}</td>
+              <td>{{ featuresData.fac_n_add }}</td>
+            </NuxtLink>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
   <div class="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
     <div class="flex flex-1 justify-between sm:hidden">
       <a href="#"
@@ -7,23 +37,6 @@
         class="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Next</a>
     </div>
     <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
-      <div>
-        <p class="text-sm text-gray-700">
-          Showing
-          {{ ' ' }}
-          <span class="font-medium">1</span>
-          {{ ' ' }}
-          to
-          {{ ' ' }}
-          <span class="font-medium">10</span>
-          {{ ' ' }}
-          of
-          {{ ' ' }}
-          <span class="font-medium">97</span>
-          {{ ' ' }}
-          results
-        </p>
-      </div>
       <div>
         <nav class="isolate inline-flex -space-x-px rounded-md shadow-xs" aria-label="Pagination">
           <a href="#"
@@ -55,42 +68,17 @@
       </div>
     </div>
   </div>
-
-  <div>
-    <h1>노인복지시설 목록</h1>
-    <table>
-      <thead>
-        <tr>
-          <td>시설 명</td>
-          <td>전화번호</td>
-          <td>분류 명</td>
-          <td>주소</td>
-          <td>도로명주소</td>
-        </tr>
-      </thead>
-      <tbody>
-        <div v-if="pending">Loading...</div>
-        <div v-else-if="error">Error: {{ error.message }}</div>
-        <div v-else>
-          <tr v-for="post in data" v-bind:key="post.id">
-            <td>
-              <NuxtLink :to="'/example/' + post.id">{{ post.properties.fac_nam }}</NuxtLink>
-            </td>
-            <td>{{ post.properties.fac_tel }}</td>
-            <td>{{ post.properties.cat_nam }}</td>
-            <td>{{ post.properties.fac_o_add }}</td>
-            <td>{{ post.properties.fac_n_add }}</td>
-          </tr>
-        </div>
-      </tbody>
-    </table>
-  </div>
 </template>
 
 <script setup lang="ts">
 import type { FeatureType } from '~/types/featureType';
+// import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/20/solid'
+const config = useRuntimeConfig();
+const apiBase = config.public.apiBase;
+// const page = useState<Number>('page', () => 10);
+  const page = ref(10)
 
-const { data, pending, error } = await useFetch<FeatureType[]>('http://localhost:3001/features');
+const { data, pending, error } = await useFetch<FeatureType[]>(`${apiBase}/features`);
 
 // FeatureType[]타입 변수 features 선언. 빈 배열값으로 초기화.
 // const features = useState<FeatureType[]>('features', () => []);
@@ -99,19 +87,18 @@ const { data, pending, error } = await useFetch<FeatureType[]>('http://localhost
 // watchEffect(() => {
 //   if (data.value) {
 //     features.value = data.value;
+//     // refresh();
 //   } else {
 //     console.log("데이터를 받아오지 못함!");
 //   }
 // });
 
-// import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/20/solid'
-
-const items = [
-  { id: 1, title: 'Back End Developer', department: 'Engineering', type: 'Full-time', location: 'Remote' },
-  { id: 2, title: 'Front End Developer', department: 'Engineering', type: 'Full-time', location: 'Remote' },
-  { id: 3, title: 'User Interface Designer', department: 'Design', type: 'Full-time', location: 'Remote' },
-]
 </script>
 
+<style scoped>
+@reference "tailwindcss";
 
-<style scoped></style>
+thead td {
+  @apply border text-center p-2;
+}
+</style>
